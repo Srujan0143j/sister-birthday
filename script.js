@@ -1,63 +1,67 @@
-// Typing animation
-new Typed("#typing", {
-  strings: [
-    "You are my strength 💖",
-    "My best friend 👭",
-    "My forever support 🌸"
-  ],
-  typeSpeed: 50,
-  backSpeed: 30,
-  loop: true
-});
-
-function showSections() {
-  document.querySelectorAll('.fade').forEach(el => {
-    setTimeout(() => el.classList.add('show'), 300);
-  });
-}
-
 function start() {
   document.querySelector('.hero').style.display = 'none';
-
   document.querySelector('.gallery').classList.remove('hidden');
-  document.querySelector('.video').classList.remove('hidden');
-  document.querySelector('.secret').classList.remove('hidden');
-
-  showSections();
 
   document.getElementById('music').play();
+
+  startSlider();
+  startHearts();
 }
 
-// Password lock
-function checkPass() {
-  let pass = document.getElementById("pass").value;
+// 🎞️ Auto Slideshow
+function startSlider() {
+  let slides = document.querySelectorAll('.slider img');
+  let index = 0;
 
-  if (pass === "akka123") {
-    document.getElementById("secretText").innerText =
-      "You are not just my sister… you are my happiness, my guide, and my forever hero 💖";
+  setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 3000);
+}
 
-    // Show final + fireworks
-    document.querySelector('.final').classList.remove('hidden');
-    firework();
-  } else {
-    alert("Wrong password 😅");
+// 💖 Floating Hearts Animation
+function startHearts() {
+  const canvas = document.getElementById("hearts");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let hearts = [];
+
+  function Heart() {
+    this.x = Math.random() * canvas.width;
+    this.y = canvas.height;
+    this.size = Math.random() * 20 + 10;
+    this.speed = Math.random() * 2 + 1;
   }
-}
 
-// Fireworks effect
-function firework() {
-  var duration = 3 * 1000;
-  var end = Date.now() + duration;
+  Heart.prototype.update = function () {
+    this.y -= this.speed;
+  };
 
-  (function frame() {
-    confetti({
-      particleCount: 5,
-      spread: 70,
-      origin: { y: 0.6 }
+  Heart.prototype.draw = function () {
+    ctx.fillStyle = "pink";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  };
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    hearts.push(new Heart());
+
+    hearts.forEach((h, i) => {
+      h.update();
+      h.draw();
+
+      if (h.y < 0) hearts.splice(i, 1);
     });
 
-    if (Date.now() < end) {
-      requestAnimationFrame(frame);
-    }
-  })();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 }
