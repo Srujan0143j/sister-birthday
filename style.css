@@ -2,63 +2,52 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: #0b0b0b;
-  color: #fff;
+  color: white;
   text-align: center;
+  overflow-x: hidden;
 }
 
-/* Smooth sections */
-section {
-  padding: 60px 20px;
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Fade animation */
-.fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1.5s ease;
-}
-
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Buttons */
 button {
-  padding: 12px 22px;
-  background: linear-gradient(45deg, gold, pink);
-  border: none;
+  padding: 12px 25px;
   border-radius: 25px;
+  border: none;
+  background: linear-gradient(45deg, pink, gold);
   cursor: pointer;
-  font-weight: bold;
+}
+
+.hidden {
+  display: none;
 }
 
 /* Gallery */
-.gallery img {
-  width: 150px;
-  margin: 10px;
-  border-radius: 15px;
-  transition: transform 0.5s ease;
+.gallery {
+  padding: 50px;
 }
 
-.gallery img:hover {
+/* Slider */
+.slider {
+  position: relative;
+  width: 300px;
+  margin: auto;
+}
+
+.slider img {
+  position: absolute;
+  width: 100%;
+  border-radius: 20px;
+  opacity: 0;
   transform: scale(1.1);
+  transition: all 1.5s ease;
 }
 
-/* Video */
-video {
-  width: 80%;
-  border-radius: 15px;
-}
-
-/* Input */
-input {
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-}
-
-/* Hidden */
-.hidden {
-  display: none;
+.slider img.active {
+  opacity: 1;
+  transform: scale(1);
 }
