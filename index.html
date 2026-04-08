@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Akka 💖</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="assets/music/birthday.mp3">
+</audio>
+
+<section class="hero fade">
+  <h1>Happy Birthday Akka 💖</h1>
+  <p id="typing"></p>
+  <button onclick="start()">Start Your Surprise 🎁</button>
+</section>
+
+<section class="gallery hidden fade">
+  <h2>Memories ✨</h2>
+  <img src="assets/images/img1.jpg">
+  <img src="assets/images/img2.jpg">
+</section>
+
+<section class="video hidden fade">
+  <h2>Special Video 🎥</h2>
+  <video controls>
+    <source src="assets/video/video.mp4">
+  </video>
+</section>
+
+<section class="secret hidden fade">
+  <h2>Secret Message 🔐</h2>
+
+  <input type="password" id="pass" placeholder="Enter password">
+  <button onclick="checkPass()">Unlock</button>
+
+  <p id="secretText"></p>
+</section>
+
+<section class="final hidden fade">
+  <h2>🎂 Happy Birthday Again 💖</h2>
+</section>
+
+<!-- Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
